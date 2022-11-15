@@ -1,5 +1,6 @@
 """Contain different helper functions."""
 import json
+import logging
 import pathlib
 from os import PathLike
 from typing import Union
@@ -42,3 +43,10 @@ def save_json(path: Union[str, PathLike], data: Union[dict, list]) -> bool:
         raise UnknownExtensionError(f'Unknown extension .{path.name.split(".")[-1]}')
     path.write_text(json.dumps(data))
     return True
+
+
+def get_dummy_logger() -> logging.Logger:
+    """Configure a logger that does nothing."""
+    logger = logging.getLogger('__dummy__')
+    logger.disabled = True
+    return logger

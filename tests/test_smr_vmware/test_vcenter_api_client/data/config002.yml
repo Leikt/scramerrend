@@ -1,0 +1,8 @@
+---
+- url: test/url
+  username: dummy
+  password: "**secret**"
+- url: test2/url
+  username: dummy2
+  password: "**secret2**"
+...
