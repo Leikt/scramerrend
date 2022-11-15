@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from smr import load_json, save_json
+from smr import load_json, save_json, UnknownExtensionError
 
 
 class TestHelpers(unittest.TestCase):
@@ -12,12 +12,20 @@ class TestHelpers(unittest.TestCase):
         except FileNotFoundError:
             pass
 
-    def test_load_json(self):
+    def test_load(self):
         data = load_json("test_helpers/data/test.json")
         self.assertEqual("AAA", data["value"])
 
-    def test_save_json(self):
+    def test_save(self):
         data = {
             "value": "AAA"
         }
         self.assertTrue(save_json("test_helpers/data/test_save.json", data))
+
+    def test_extension_error_on_load(self):
+        with self.assertRaises(UnknownExtensionError):
+            load_json("somefile.ext")
+
+    def test_extension_error_on_save(self):
+        with self.assertRaises(UnknownExtensionError):
+            save_json("somefile.ext", {})
