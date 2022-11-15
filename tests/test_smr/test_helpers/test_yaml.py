@@ -8,19 +8,19 @@ class TestHelpers(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         try:
-            os.remove("test_helpers/data/test_save.yml")
+            os.remove("test_smr/test_helpers/data/test_save.yml")
         except FileNotFoundError:
             pass
 
     def test_load(self):
-        data = load_yaml("test_helpers/data/test.yml")
+        data = load_yaml("test_smr/test_helpers/data/test.yml")
         self.assertEqual("AAA", data["value"])
 
     def test_save(self):
         data = {
             "value": "AAA"
         }
-        self.assertTrue(save_yaml("test_helpers/data/test_save.yml", data))
+        self.assertTrue(save_yaml("test_smr/test_helpers/data/test_save.yml", data))
 
     def test_extension_error_on_load(self):
         with self.assertRaises(UnknownExtensionError):

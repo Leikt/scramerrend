@@ -8,19 +8,19 @@ class TestHelpers(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         try:
-            os.remove("test_helpers/data/test_save.json")
+            os.remove("test_smr/test_helpers/data/test_save.json")
         except FileNotFoundError:
             pass
 
     def test_load(self):
-        data = load_json("test_helpers/data/test.json")
+        data = load_json("test_smr/test_helpers/data/test.json")
         self.assertEqual("AAA", data["value"])
 
     def test_save(self):
         data = {
             "value": "AAA"
         }
-        self.assertTrue(save_json("test_helpers/data/test_save.json", data))
+        self.assertTrue(save_json("test_smr/test_helpers/data/test_save.json", data))
 
     def test_extension_error_on_load(self):
         with self.assertRaises(UnknownExtensionError):
